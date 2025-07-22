@@ -1,0 +1,2726 @@
+<body>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abertura de CNPJ MEI - Formulário</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--gray-50) 0%, #ffffff 100%);
+            color: var(--gray-800);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .checkout-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        @media (min-width: 768px) {
+            .checkout-container {
+                max-width: 1200px;
+                padding: 20px;
+                display: grid;
+                grid-template-columns: 1fr 400px;
+                gap: 40px;
+            }
+        }
+
+        .checkout-header {
+            background: var(--white);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        @media (min-width: 768px) {
+            .checkout-header {
+                grid-column: 1 / -1;
+                border-radius: var(--border-radius-lg);
+                margin-bottom: 20px;
+                position: static;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 24px;
+            }
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--success-color);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .security-badge {
+                padding: 8px 16px;
+                font-size: 12px;
+                gap: 8px;
+            }
+        }
+
+        .order-summary-mobile {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 80px;
+            z-index: 90;
+        }
+
+        @media (min-width: 768px) {
+            .order-summary-mobile {
+                display: none;
+            }
+        }
+
+        .summary-toggle {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-fast);
+        }
+
+        .summary-toggle:active {
+            background: var(--gray-50);
+        }
+
+        .summary-toggle-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-toggle-icon {
+            font-size: 14px;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .summary-toggle.expanded .summary-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .summary-toggle-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .summary-toggle-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .summary-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .summary-content.expanded {
+            max-height: 500px;
+        }
+
+        .summary-content-inner {
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .progress-container {
+            background: var(--white);
+            padding: 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        @media (min-width: 768px) {
+            .progress-container {
+                border-radius: var(--border-radius-lg);
+                box-shadow: var(--shadow-sm);
+                margin-bottom: 20px;
+                border-bottom: none;
+                padding: 24px;
+            }
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: var(--gray-200);
+            z-index: 1;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: 2px;
+            background: var(--primary-color);
+            z-index: 2;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            color: var(--gray-500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .step.active .step-circle {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-circle {
+            background: var(--success-color);
+            color: var(--white);
+        }
+
+        .step-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .step-label {
+                font-size: 14px;
+            }
+        }
+
+        .step.active .step-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .step.completed .step-label {
+            color: var(--success-color);
+        }
+
+        .main-content {
+            background: var(--white);
+            min-height: calc(100vh - 200px);
+        }
+
+        @media (min-width: 768px) {
+            .main-content {
+                border-radius: var(--border-radius-lg);
+                box-shadow: var(--shadow-sm);
+                height: fit-content;
+                min-height: auto;
+            }
+        }
+
+        .step-content {
+            display: none;
+            padding: 24px 20px;
+        }
+
+        @media (min-width: 768px) {
+            .step-content {
+                padding: 32px;
+            }
+        }
+
+        .step-content.active {
+            display: block;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .step-title {
+                font-size: 28px;
+            }
+        }
+
+        .step-subtitle {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 768px) {
+            .step-subtitle {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+        }
+
+        /* ===== CAMPOS INICIAIS SEMPRE VISÍVEIS ===== */
+        .initial-fields {
+            opacity: 1;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        /* ===== CAMPOS CONDICIONAIS - INICIALMENTE OCULTOS ===== */
+        .conditional-fields {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 20px;
+        }
+
+        .conditional-fields.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animação específica para cada seção que aparece */
+        .conditional-fields.show .document-section {
+            animation: slideInFromBottom 0.6s ease-out;
+        }
+
+        .conditional-fields.show .form-group {
+            animation: slideInFromBottom 0.6s ease-out;
+            animation-delay: 0.1s;
+            animation-fill-mode: both;
+        }
+
+        .conditional-fields.show .form-row {
+            animation: slideInFromBottom 0.6s ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== MELHORIAS DE ESPAÇAMENTO ===== */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group.compact {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        .activity-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .activity-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .address-row-number-complement {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
+        }
+
+        .address-row-city-state {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 12px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            font-size: 15px;
+            transition: var(--transition-fast);
+            background: var(--white);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-input.error {
+            border-color: var(--error-color);
+            box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1);
+        }
+
+        .form-input.success {
+            border-color: var(--success-color);
+            box-shadow: 0 0 0 3px rgb(16 185 129 / 0.1);
+        }
+
+        /* ===== SPINNER SUTIL ABAIXO DO CAMPO RG ===== */
+        .field-loading-indicator {
+            display: none;
+            align-items: center;
+            margin-top: 8px;
+            margin-left: 0;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s ease-out;
+        }
+
+        .field-loading-indicator.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .field-spinner {
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid var(--gray-200);
+            border-top: 1.5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+
+        .field-loading-text {
+            font-size: 12px;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        /* Loading específico para CEP */
+        .cep-loader {
+            position: relative;
+        }
+
+        .cep-loading-indicator {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+
+        .cep-loading-indicator.show {
+            display: block;
+        }
+
+        .cep-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--gray-200);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ===== COMPONENTES MELHORADOS ===== */
+        
+        .enhanced-select-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .enhanced-select-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .enhanced-select-label .icon {
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+
+        .enhanced-select {
+            width: 100%;
+            padding: 14px 16px;
+            padding-right: 44px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+            cursor: pointer;
+            position: relative;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .enhanced-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgb(37 99 235 / 0.1);
+            background: var(--white);
+        }
+
+        .enhanced-select:hover {
+            border-color: var(--gray-400);
+            background: var(--white);
+        }
+
+        .enhanced-select.error {
+            border-color: var(--error-color);
+            box-shadow: 0 0 0 4px rgb(239 68 68 / 0.1);
+            background: #fef2f2;
+        }
+
+        .enhanced-select.success {
+            border-color: var(--success-color);
+            box-shadow: 0 0 0 4px rgb(16 185 129 / 0.1);
+            background: #f0fdf4;
+        }
+
+        .enhanced-select-container::after {
+            content: '';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%232563eb\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M6 9l6 6 6-6\'%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            pointer-events: none;
+            transition: var(--transition-fast);
+            margin-top: 16px;
+        }
+
+        .enhanced-select-container:hover::after {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .enhanced-select option[value=""] {
+            color: var(--gray-400);
+            font-style: italic;
+        }
+
+        .enhanced-select option {
+            padding: 12px;
+            font-weight: 500;
+            background: var(--white);
+            color: var(--gray-800);
+        }
+
+        .enhanced-select option:hover {
+            background: var(--gray-50);
+        }
+
+        .field-tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        .field-tooltip .tooltip-icon {
+            width: 16px;
+            height: 16px;
+            background: var(--gray-400);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 10px;
+            font-weight: bold;
+            cursor: help;
+        }
+
+        .field-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background: var(--gray-900);
+            color: var(--white);
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .field-tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--gray-900) transparent transparent transparent;
+        }
+
+        .field-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .activity-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), #3b82f6);
+        }
+
+        .activity-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+
+        .activity-section-title .icon {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .activity-section-subtitle {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .activity-select-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 640px) {
+            .activity-select-group {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .activity-select-item {
+            position: relative;
+        }
+
+        .activity-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-color);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .activity-badge.secondary {
+            background: var(--gray-500);
+        }
+
+        .document-section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 16px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .document-section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 16px;
+        }
+
+        .document-section-title .icon {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 640px) {
+            .enhanced-select-label {
+                font-size: 12px;
+            }
+            
+            .enhanced-select {
+                padding: 12px 14px;
+                padding-right: 40px;
+                font-size: 14px;
+            }
+            
+            .activity-section {
+                padding: 16px;
+                margin: 16px 0;
+            }
+            
+            .activity-section-title {
+                font-size: 16px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-row {
+                gap: 12px;
+            }
+        }
+
+        .form-group.rg-field {
+            margin-bottom: 20px;
+        }
+
+        select.form-input {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\' fill=\'none\' stroke=\'%236B7280\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M6 9l6 6 6-6\'%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+            padding-right: 36px;
+        }
+
+        select.form-input:focus {
+            transform: none;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 11px;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .address-fields {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease-out;
+        }
+
+        .address-fields.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn {
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            min-height: 52px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgb(37 99 235 / 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            transform: translateY(-1px);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+            pointer-events: none;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 640px) {
+            .button-group {
+                flex-direction: column;
+                margin-top: 32px;
+            }
+        }
+
+        .sidebar {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                display: block;
+                background: var(--white);
+                border-radius: var(--border-radius-lg);
+                padding: 24px;
+                box-shadow: var(--shadow-sm);
+                height: fit-content;
+                position: sticky;
+                top: 20px;
+            }
+        }
+
+        .order-summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+        }
+
+        .order-totals {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .total-row.final {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--gray-900);
+            border-top: 1px solid var(--gray-200);
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .trust-badges {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+
+        .trust-icon {
+            width: 16px;
+            height: 16px;
+            background: var(--success-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 10px;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .mobile-padding {
+            height: 100px;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-padding {
+                display: none;
+            }
+        }
+
+        .success-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success-color);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            display: none;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .declaration-section {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .declaration-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .declaration-text {
+            font-size: 14px;
+            color: var(--gray-700);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--gray-700);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .fee-section {
+            background: #fef3cd;
+            border: 1px solid #fbbf24;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .fee-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .fee-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 12px;
+        }
+
+        .fee-description {
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .review-details {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .review-toggle {
+            padding: 16px 20px;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-fast);
+        }
+
+        .review-toggle:hover {
+            background: var(--gray-100);
+        }
+
+        .review-toggle-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-toggle-icon {
+            font-size: 16px;
+        }
+
+        .review-toggle-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .review-toggle-arrow {
+            font-size: 12px;
+            color: var(--gray-500);
+            transition: transform 0.3s ease;
+        }
+
+        .review-toggle.expanded .review-toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .review-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .review-content.expanded {
+            max-height: 1200px;
+        }
+
+        @media (max-width: 767px) {
+            .review-content.expanded {
+                max-height: 1500px;
+            }
+            
+            .review-content-inner {
+                padding: 16px;
+            }
+            
+            .review-sections {
+                gap: 16px;
+            }
+            
+            .review-section-header {
+                padding: 10px 12px;
+            }
+            
+            .review-section-icon {
+                font-size: 14px;
+            }
+            
+            .review-section-title {
+                font-size: 13px;
+            }
+            
+            .review-section-content {
+                padding: 12px;
+            }
+            
+            .review-item {
+                padding: 6px 0;
+            }
+            
+            .review-label {
+                font-size: 11px;
+            }
+            
+            .review-value {
+                font-size: 13px;
+            }
+        }
+
+        .review-content-inner {
+            padding: 20px;
+        }
+
+        .review-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .review-section {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .review-section-header {
+            background: linear-gradient(135deg, var(--primary-color), #2563eb);
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-section-icon {
+            font-size: 16px;
+        }
+
+        .review-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .review-section-content {
+            padding: 16px;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 640px) {
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .review-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .review-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-900);
+            word-break: break-word;
+            flex: 1;
+        }
+
+        .review-value.empty {
+            color: var(--gray-400);
+            font-style: italic;
+        }
+  </style>
+
+
+    <div class="checkout-container">
+        <header class="checkout-header">
+            <div class="header-content">
+                <div class="logo">MEI Brasil</div>
+                <div class="security-badge">
+                    <span>🔒</span>
+                    Processo 100% Seguro
+                </div>
+            </div>
+        </header>
+
+        <div class="order-summary-mobile">
+            <div class="summary-toggle" onclick="toggleOrderSummary()">
+                <div class="summary-toggle-left">
+                    <span class="summary-toggle-icon">▼</span>
+                    <span class="summary-toggle-text">Exibir resumo do processo</span>
+                </div>
+                <span class="summary-toggle-price" id="mobileTotalPrice">R$ 59,90</span>
+            </div>
+            <div class="summary-content" id="summaryContent">
+                <div class="summary-content-inner">
+                    <div class="order-totals">
+                        <div class="total-row final">
+                            <span>Taxa de Abertura</span>
+                            <span>R$ 59,90</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="progress-line" id="progressLine"></div>
+                <div class="step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Dados Pessoais</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Atividade</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Confirmação</div>
+                </div>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="step-content active" id="step1">
+                <h2 class="step-title">Informações de Contato</h2>
+                <p class="step-subtitle">Preencha os Campos abaixo:</p>
+
+                <form id="personalDataForm">
+                    <!-- CAMPOS INICIAIS SEMPRE VISÍVEIS: NOME, CPF E RG -->
+                    <div class="initial-fields">
+                        <div class="form-group">
+                            <label class="form-label" for="fullName">Nome *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="Nome Completo">
+                            <div class="error-message" id="fullNameError">Digite seu nome completo</div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group compact">
+                                <label class="form-label" for="cpf">CPF *</label>
+                                <input type="text" id="cpf" name="cpf" class="form-input" maxlength="14" required placeholder="000.000.000-00" inputmode="numeric">
+                                <div class="error-message" id="cpfError">Digite um CPF válido</div>
+                            </div>
+                            <div class="form-group compact rg-field">
+                                <label class="form-label" for="rg">RG *</label>
+                                <input type="text" id="rg" name="rg" class="form-input" maxlength="12" required placeholder="00.000.000-0" inputmode="numeric">
+                                <div class="error-message" id="rgError">Digite um RG válido</div>
+                                <!-- Spinner sutil abaixo do campo RG -->
+                                <div class="field-loading-indicator" id="rgLoadingIndicator">
+                                    <div class="field-spinner"></div>
+                                    <span class="field-loading-text">Verificando documento...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CAMPOS CONDICIONAIS - APARECEM APÓS RG VÁLIDO JUNTO COM INFORMAÇÕES DO DOCUMENTO -->
+                    <div class="conditional-fields" id="conditionalFields">
+                        <!-- SEÇÃO DE DOCUMENTOS - APARECE JUNTO COM OS DEMAIS CAMPOS -->
+                        <div class="document-section">
+                            <div class="document-section-title">
+                                <span class="icon">📄</span>
+                                Informações do Documento
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="enhanced-select-container">
+                                    <label class="enhanced-select-label" for="rgIssuer">
+                                        <span class="icon">🏛️</span>
+                                        Órgão Emissor
+                                        <div class="field-tooltip">
+                                            <div class="tooltip-icon">?</div>
+                                            <span class="tooltip-text">Órgão responsável pela emissão do seu RG</span>
+                                        </div>
+                                    </label>
+                                    <select id="rgIssuer" name="rgIssuer" class="enhanced-select" required>
+                                        <option value="">Selecione o órgão emissor do RG</option>
+                                        <option value="SSP">SSP - Secretaria de Segurança Pública</option>
+                                        <option value="DETRAN">DETRAN - Departamento de Trânsito</option>
+                                        <option value="Polícia Civil">Polícia Civil</option>
+                                        <option value="Polícia Federal">Polícia Federal</option>
+                                        <option value="Polícia Militar">Polícia Militar</option>
+                                        <option value="Corpo de Bombeiros">Corpo de Bombeiros</option>
+                                        <option value="Marinha">Marinha do Brasil</option>
+                                        <option value="Exército">Exército Brasileiro</option>
+                                        <option value="Aeronáutica">Força Aérea Brasileira</option>
+                                    </select>
+                                    <div class="error-message" id="rgIssuerError">Selecione o órgão emissor</div>
+                                </div>
+                                
+                                <div class="enhanced-select-container">
+                                    <label class="enhanced-select-label" for="rgState">
+                                        <span class="icon">🗺️</span>
+                                        Estado de Emissão
+                                        <div class="field-tooltip">
+                                            <div class="tooltip-icon">?</div>
+                                            <span class="tooltip-text">Estado onde seu RG foi emitido</span>
+                                        </div>
+                                    </label>
+                                    <select id="rgState" name="rgState" class="enhanced-select" required>
+                                        <option value="">Selecione o estado</option>
+                                        <option value="AC">Acre (AC)</option>
+                                        <option value="AL">Alagoas (AL)</option>
+                                        <option value="AP">Amapá (AP)</option>
+                                        <option value="AM">Amazonas (AM)</option>
+                                        <option value="BA">Bahia (BA)</option>
+                                        <option value="CE">Ceará (CE)</option>
+                                        <option value="DF">Distrito Federal (DF)</option>
+                                        <option value="ES">Espírito Santo (ES)</option>
+                                        <option value="GO">Goiás (GO)</option>
+                                        <option value="MA">Maranhão (MA)</option>
+                                        <option value="MT">Mato Grosso (MT)</option>
+                                        <option value="MS">Mato Grosso do Sul (MS)</option>
+                                        <option value="MG">Minas Gerais (MG)</option>
+                                        <option value="PA">Pará (PA)</option>
+                                        <option value="PB">Paraíba (PB)</option>
+                                        <option value="PR">Paraná (PR)</option>
+                                        <option value="PE">Pernambuco (PE)</option>
+                                        <option value="PI">Piauí (PI)</option>
+                                        <option value="RJ">Rio de Janeiro (RJ)</option>
+                                        <option value="RN">Rio Grande do Norte (RN)</option>
+                                        <option value="RS">Rio Grande do Sul (RS)</option>
+                                        <option value="RO">Rondônia (RO)</option>
+                                        <option value="RR">Roraima (RR)</option>
+                                        <option value="SC">Santa Catarina (SC)</option>
+                                        <option value="SP">São Paulo (SP)</option>
+                                        <option value="SE">Sergipe (SE)</option>
+                                        <option value="TO">Tocantins (TO)</option>
+                                    </select>
+                                    <div class="error-message" id="rgStateError">Selecione o estado</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DEMAIS CAMPOS QUE APARECEM JUNTO COM AS INFORMAÇÕES DO DOCUMENTO -->
+                        <div class="form-group">
+                            <label class="form-label" for="motherName">Nome da Mãe *</label>
+                            <input type="text" id="motherName" name="motherName" class="form-input" required placeholder="Nome completo da sua mãe">
+                            <div class="error-message" id="motherNameError">Digite o nome da sua mãe</div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group compact">
+                                <label class="form-label" for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" class="form-input" required placeholder="seu@email.com">
+                                <div class="error-message" id="emailError">Digite um e-mail válido</div>
+                            </div>
+                            <div class="form-group compact">
+                                <label class="form-label" for="phone">Telefone *</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" maxlength="15" required placeholder="(11) 99999-9999">
+                                <div class="error-message" id="phoneError">Digite um telefone válido</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary btn-full">
+                            Prosseguir
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="step-content" id="step2">
+                <h2 class="step-title">Endereço e Atividade</h2>
+                <p class="step-subtitle">Informe seu endereço e as atividades que exercerá como MEI</p>
+
+                <form id="addressActivityForm">
+                    <div class="form-group cep-loader">
+                        <label class="form-label" for="zipCode">CEP *</label>
+                        <input type="text" id="zipCode" name="zipCode" class="form-input" maxlength="9" required placeholder="00000-000" inputmode="numeric">
+                        <div class="cep-loading-indicator" id="cepLoadingIndicator">
+                            <div class="cep-spinner"></div>
+                        </div>
+                        <div class="error-message" id="zipCodeError">Digite um CEP válido</div>
+                    </div>
+
+                    <!-- Loading sutil para busca do CEP -->
+                    <div class="subtle-loader" id="cepLoader">
+                        <div class="loader-content">
+                            <div class="loader-spinner"></div>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="address-fields" id="addressFields">
+                        <div class="section-header">
+                            <h3 class="section-title">📍 Endereço</h3>
+                            <p class="section-subtitle">Informações do seu endereço residencial</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="address">Endereço *</label>
+                            <input type="text" id="address" name="address" class="form-input" required readonly>
+                            <div class="error-message" id="addressError">Digite o endereço</div>
+                        </div>
+
+                        <div class="address-row-number-complement">
+                            <div class="form-group">
+                                <label class="form-label" for="number">Número *</label>
+                                <input type="text" id="number" name="number" class="form-input" required>
+                                <div class="error-message" id="numberError">Digite o número</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="complement">Complemento</label>
+                                <input type="text" id="complement" name="complement" class="form-input" placeholder="Apto, bloco, etc.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="neighborhood">Bairro *</label>
+                            <input type="text" id="neighborhood" name="neighborhood" class="form-input" required readonly>
+                            <div class="error-message" id="neighborhoodError">Digite o bairro</div>
+                        </div>
+
+                        <div class="address-row-city-state">
+                            <div class="form-group">
+                                <label class="form-label" for="city">Cidade *</label>
+                                <input type="text" id="city" name="city" class="form-input" required readonly>
+                                <div class="error-message" id="cityError">Digite a cidade</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="state">Estado *</label>
+                                <select id="state" name="state" class="form-input" required>
+                                    <option value="">Estado</option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AP">Amapá (AP)</option>
+                                    <option value="AM">Amazonas (AM)</option>
+                                    <option value="BA">Bahia (BA)</option>
+                                    <option value="CE">Ceará (CE)</option>
+                                    <option value="DF">Distrito Federal (DF)</option>
+                                    <option value="ES">Espírito Santo (ES)</option>
+                                    <option value="GO">Goiás (GO)</option>
+                                    <option value="MA">Maranhão (MA)</option>
+                                    <option value="MT">Mato Grosso (MT)</option>
+                                    <option value="MS">Mato Grosso do Sul (MS)</option>
+                                    <option value="MG">Minas Gerais (MG)</option>
+                                    <option value="PA">Pará (PA)</option>
+                                    <option value="PB">Paraíba (PB)</option>
+                                    <option value="PR">Paraná (PR)</option>
+                                    <option value="PE">Pernambuco (PE)</option>
+                                    <option value="PI">Piauí (PI)</option>
+                                    <option value="RJ">Rio de Janeiro (RJ)</option>
+                                    <option value="RN">Rio Grande do Norte (RN)</option>
+                                    <option value="RS">Rio Grande do Sul (RS)</option>
+                                    <option value="RO">Rondônia (RO)</option>
+                                    <option value="RR">Roraima (RR)</option>
+                                    <option value="SC">Santa Catarina (SC)</option>
+                                    <option value="SP">São Paulo (SP)</option>
+                                    <option value="SE">Sergipe (SE)</option>
+                                    <option value="TO">Tocantins (TO)</option>
+                                </select>
+                                <div class="error-message" id="stateError">Selecione o estado</div>
+                            </div>
+                        </div>
+
+                        <div class="section-divider"></div>
+
+                        <!-- SEÇÃO DE ATIVIDADES MELHORADA -->
+                        <div class="activity-section">
+                            <div class="activity-section-title">
+                                <span class="icon">💼</span>
+                                Atividade Empresarial
+                            </div>
+                            <p class="activity-section-subtitle">
+                                Defina as atividades que exercerá como MEI. A atividade principal é obrigatória e define o foco do seu negócio.
+                            </p>
+
+                            <div class="activity-select-group">
+                                <div class="activity-select-item">
+                                    <div class="activity-badge">Principal</div>
+                                    <div class="enhanced-select-container">
+                                        <label class="enhanced-select-label" for="primaryActivity">
+                                            <span class="icon"></span>
+                                            Atividade Principal
+                                            <div class="field-tooltip">
+                                                <div class="tooltip-icon">?</div>
+                                                <span class="tooltip-text">Atividade que representa o foco principal do seu negócio</span>
+                                            </div>
+                                        </label>
+                                        <select id="primaryActivity" name="primaryActivity" class="enhanced-select" required>
+                                            <option value="">Escolha sua atividade principal</option>
+                                            <option value="Comércio de roupas e acessórios">Comércio de roupas e acessórios</option>
+                                            <option value="Serviços de beleza e estética">Serviços de beleza e estética</option>
+                                            <option value="Alimentação e bebidas">Alimentação e bebidas</option>
+                                            <option value="Serviços de informática">Serviços de informática</option>
+                                            <option value="Consultoria e assessoria">Consultoria e assessoria</option>
+                                            <option value="Serviços de limpeza">Serviços de limpeza</option>
+                                            <option value="Artesanato">Artesanato</option>
+                                            <option value="Serviços de manutenção">Serviços de manutenção</option>
+                                            <option value="Transporte">Transporte</option>
+                                            <option value="Educação e treinamento">Educação e treinamento</option>
+                                            <option value="Outros">Outros</option>
+                                        </select>
+                                        <div class="error-message" id="primaryActivityError">Selecione a atividade principal</div>
+                                    </div>
+                                </div>
+
+                                <div class="activity-select-item">
+                                    <div class="activity-badge secondary">Opcional</div>
+                                    <div class="enhanced-select-container">
+                                        <label class="enhanced-select-label" for="secondaryActivity">
+                                            <span class="icon"></span>
+                                            Atividade Secundária
+                                            <div class="field-tooltip">
+                                                <div class="tooltip-icon">?</div>
+                                                <span class="tooltip-text">Atividade complementar que você pode exercer (opcional)</span>
+                                            </div>
+                                        </label>
+                                        <select id="secondaryActivity" name="secondaryActivity" class="enhanced-select">
+                                            <option value="">Atividade secundária (opcional)</option>
+                                            <option value="Comércio de roupas e acessórios">Comércio de roupas e acessórios</option>
+                                            <option value="Serviços de beleza e estética">Serviços de beleza e estética</option>
+                                            <option value="Alimentação e bebidas">Alimentação e bebidas</option>
+                                            <option value="Serviços de informática">Serviços de informática</option>
+                                            <option value="Consultoria e assessoria">Consultoria e assessoria</option>
+                                            <option value="Serviços de limpeza">Serviços de limpeza</option>
+                                            <option value="Artesanato">Artesanato</option>
+                                            <option value="Serviços de manutenção">Serviços de manutenção</option>
+                                            <option value="Transporte">Transporte</option>
+                                            <option value="Educação e treinamento">Educação e treinamento</option>
+                                            <option value="Outros">Outros</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="tradeName">Nome Fantasia</label>
+                            <input type="text" id="tradeName" name="tradeName" class="form-input" placeholder="Nome comercial da sua empresa (opcional)">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="socialCapital">Capital Social *</label>
+                            <input type="text" id="socialCapital" name="socialCapital" class="form-input" required placeholder="R$ 1.000,00" value="R$ 1.000,00">
+                            <div class="error-message" id="socialCapitalError">Digite o valor do capital social</div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(1)">
+                            Voltar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Continuar para Confirmação
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="step-content" id="step3">
+                <h2 class="step-title">Confirmação</h2>
+                <p class="step-subtitle">Revise seus dados e finalize o processo de abertura do MEI</p>
+
+                <div class="declaration-section">
+                    <h3 class="declaration-title">Declaração</h3>
+                    <p class="declaration-text">
+                        Ao prosseguir, você declara que leu e aceita os Termos de Uso e a Política de Privacidade, 
+                        confirma que as informações fornecidas são verdadeiras e autoriza o processamento dos seus 
+                        dados conforme a Lei Geral de Proteção de Dados (LGPD).
+                    </p>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="termsAccept" name="termsAccept" class="checkbox-input" required>
+                        <label for="termsAccept" class="checkbox-label">
+                            Declaro que li e aceito os <strong>Termos de Uso</strong> e a <strong>Política de Privacidade</strong>
+                        </label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="dataAccuracy" name="dataAccuracy" class="checkbox-input" required>
+                        <label for="dataAccuracy" class="checkbox-label">
+                            Confirmo que todas as informações fornecidas são <strong>verdadeiras e precisas</strong>
+                        </label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="lgpdConsent" name="lgpdConsent" class="checkbox-input" required>
+                        <label for="lgpdConsent" class="checkbox-label">
+                            Autorizo o processamento dos meus dados pessoais conforme a <strong>LGPD</strong>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="fee-section">
+                    <h3 class="fee-title">Taxa de Abertura</h3>
+                    <div class="fee-amount">R$ 59,90</div>
+                    <p class="fee-description">
+                        Taxa única para processamento e abertura do seu CNPJ MEI. 
+                        Após o pagamento, seu processo será iniciado imediatamente.
+                    </p>
+                </div>
+
+                <div class="review-details">
+                    <div class="review-toggle" onclick="toggleReviewDetails()">
+                        <div class="review-toggle-left">
+                            <span class="review-toggle-icon">📋</span>
+                            <span class="review-toggle-text">Revisar Detalhes</span>
+                        </div>
+                        <span class="review-toggle-arrow">▼</span>
+                    </div>
+                    <div class="review-content" id="reviewContent">
+                        <div class="review-content-inner">
+                            <div class="review-sections">
+                                <div class="review-section">
+                                    <div class="review-section-header">
+                                        <span class="review-section-icon">👤</span>
+                                        <h4 class="review-section-title">Dados Pessoais</h4>
+                                    </div>
+                                    <div class="review-section-content">
+                                        <div class="review-grid">
+                                            <div class="review-item">
+                                                <span class="review-label">Nome Completo</span>
+                                                <span class="review-value" id="reviewFullName">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">CPF</span>
+                                                <span class="review-value" id="reviewCpf">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">RG</span>
+                                                <span class="review-value" id="reviewRg">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Órgão Emissor</span>
+                                                <span class="review-value" id="reviewRgIssuer">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Estado Emissão</span>
+                                                <span class="review-value" id="reviewRgState">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Nome da Mãe</span>
+                                                <span class="review-value" id="reviewMotherName">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">E-mail</span>
+                                                <span class="review-value" id="reviewEmail">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Telefone</span>
+                                                <span class="review-value" id="reviewPhone">-</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="review-section">
+                                    <div class="review-section-header">
+                                        <span class="review-section-icon">📍</span>
+                                        <h4 class="review-section-title">Endereço</h4>
+                                    </div>
+                                    <div class="review-section-content">
+                                        <div class="review-grid">
+                                            <div class="review-item">
+                                                <span class="review-label">CEP</span>
+                                                <span class="review-value" id="reviewZipCode">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Endereço</span>
+                                                <span class="review-value" id="reviewAddress">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Número</span>
+                                                <span class="review-value" id="reviewNumber">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Complemento</span>
+                                                <span class="review-value" id="reviewComplement">Não informado</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Bairro</span>
+                                                <span class="review-value" id="reviewNeighborhood">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Cidade</span>
+                                                <span class="review-value" id="reviewCity">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Estado</span>
+                                                <span class="review-value" id="reviewState">-</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="review-section">
+                                    <div class="review-section-header">
+                                        <span class="review-section-icon">💼</span>
+                                        <h4 class="review-section-title">Atividade Empresarial</h4>
+                                    </div>
+                                    <div class="review-section-content">
+                                        <div class="review-grid">
+                                            <div class="review-item">
+                                                <span class="review-label">Atividade Principal</span>
+                                                <span class="review-value" id="reviewPrimaryActivity">-</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Atividade Secundária</span>
+                                                <span class="review-value" id="reviewSecondaryActivity">Não informado</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Nome Fantasia</span>
+                                                <span class="review-value" id="reviewTradeName">Não informado</span>
+                                            </div>
+                                            <div class="review-item">
+                                                <span class="review-label">Capital Social</span>
+                                                <span class="review-value" id="reviewSocialCapital">-</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="confirmationForm">
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(2)">
+                            Voltar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Pagar e Finalizar Abertura
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <h3 class="order-summary-title">Resumo do Processo</h3>
+            
+            <div class="order-totals">
+                <div class="total-row final">
+                    <span>Taxa de Abertura MEI</span>
+                    <span>R$ 59,90</span>
+                </div>
+            </div>
+
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <div class="trust-icon">✓</div>
+                    <span>Processo 100% seguro</span>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">✓</div>
+                    <span>Abertura em até 48h</span>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">✓</div>
+                    <span>Suporte especializado</span>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-icon">✓</div>
+                    <span>Documentos digitais</span>
+                </div>
+            </div>
+        </aside>
+
+        <div class="mobile-padding"></div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="success-notification" id="successNotification">
+        ✅ Processo iniciado com sucesso!
+    </div>
+
+    <script>
+// ===== VARIÁVEIS GLOBAIS E CONFIGURAÇÕES =====
+let currentStep = 1;
+let addressFilled = false;
+let isProcessing = false;
+
+// Cache para elementos DOM frequentemente acessados
+const domCache = {
+    rgLoadingIndicator: null,
+    conditionalFields: null,
+    cepLoader: null,
+    cepIndicator: null,
+    addressFields: null,
+    progressLine: null,
+    loadingOverlay: null,
+    successNotification: null
+};
+
+// Configurações de debounce e throttle
+const DEBOUNCE_DELAY = 300;
+const THROTTLE_DELAY = 100;
+const CEP_LOOKUP_DELAY = 500;
+
+// Dados do formulário
+window.meiData = {};
+
+// ===== UTILITÁRIOS DE PERFORMANCE =====
+
+// Função de debounce otimizada
+function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+// Função de throttle otimizada
+function throttle(func, delay) {
+    let lastCall = 0;
+    return function (...args) {
+        const now = Date.now();
+        if (now - lastCall >= delay) {
+            lastCall = now;
+            return func.apply(this, args);
+        }
+    };
+}
+
+// Cache de elementos DOM para evitar consultas repetidas
+function cacheElements() {
+    domCache.rgLoadingIndicator = document.getElementById('rgLoadingIndicator');
+    domCache.conditionalFields = document.getElementById('conditionalFields');
+    domCache.cepLoader = document.getElementById('cepLoader');
+    domCache.cepIndicator = document.getElementById('cepLoadingIndicator');
+    domCache.addressFields = document.getElementById('addressFields');
+    domCache.progressLine = document.getElementById('progressLine');
+    domCache.loadingOverlay = document.getElementById('loadingOverlay');
+    domCache.successNotification = document.getElementById('successNotification');
+}
+
+// ===== INICIALIZAÇÃO =====
+document.addEventListener('DOMContentLoaded', function() {
+    cacheElements();
+    setupEventListeners();
+    updateProgress();
+    setupMasks();
+    
+    // Garantir que campos condicionais estejam ocultos inicialmente
+    if (domCache.conditionalFields) {
+        domCache.conditionalFields.classList.remove('show');
+    }
+});
+
+// ===== CONFIGURAÇÃO DE EVENT LISTENERS OTIMIZADA =====
+function setupEventListeners() {
+    // Formulários
+    const personalDataForm = document.getElementById('personalDataForm');
+    const addressActivityForm = document.getElementById('addressActivityForm');
+    const confirmationForm = document.getElementById('confirmationForm');
+    
+    if (personalDataForm) {
+        personalDataForm.addEventListener('submit', handlePersonalDataSubmit);
+    }
+    if (addressActivityForm) {
+        addressActivityForm.addEventListener('submit', handleAddressActivitySubmit);
+    }
+    if (confirmationForm) {
+        confirmationForm.addEventListener('submit', handleConfirmationSubmit);
+    }
+
+    // Validação de campos com debounce
+    const debouncedValidation = debounce((input) => validateField(input), DEBOUNCE_DELAY);
+    
+    document.querySelectorAll('.form-input, .enhanced-select').forEach(input => {
+        input.addEventListener('blur', () => debouncedValidation(input));
+        input.addEventListener('input', throttle(() => {
+            // Remover estados de erro durante digitação
+            input.classList.remove('error');
+            const errorEl = document.getElementById(input.name + 'Error');
+            if (errorEl) errorEl.classList.remove('show');
+        }, THROTTLE_DELAY));
+    });
+
+    // CEP lookup com debounce
+    const zipCodeInput = document.getElementById('zipCode');
+    if (zipCodeInput) {
+        zipCodeInput.addEventListener('input', debounce(handleCEPLookup, CEP_LOOKUP_DELAY));
+    }
+
+    // RG input com debounce - IMPLEMENTAÇÃO DA VISIBILIDADE CONDICIONAL
+    const rgInput = document.getElementById('rg');
+    if (rgInput) {
+        rgInput.addEventListener('input', debounce(handleRgInput, DEBOUNCE_DELAY));
+    }
+}
+
+// ===== FUNÇÕES DE INTERFACE OTIMIZADAS =====
+
+function toggleOrderSummary() {
+    const toggle = document.querySelector('.summary-toggle');
+    const content = document.getElementById('summaryContent');
+    const icon = document.querySelector('.summary-toggle-icon');
+    const text = document.querySelector('.summary-toggle-text');
+    
+    if (!toggle || !content || !icon || !text) return;
+    
+    const isExpanded = toggle.classList.contains('expanded');
+    
+    toggle.classList.toggle('expanded');
+    content.classList.toggle('expanded');
+    
+    // Usar requestAnimationFrame para animações suaves
+    requestAnimationFrame(() => {
+        icon.textContent = isExpanded ? '▼' : '▲';
+        text.textContent = isExpanded ? 'Exibir resumo do processo' : 'Ocultar resumo do processo';
+    });
+}
+
+// ===== BUSCA DE CEP OTIMIZADA =====
+async function handleCEPLookup() {
+    const cepInput = document.getElementById('zipCode');
+    if (!cepInput) return;
+    
+    const cep = cepInput.value.replace(/\D/g, '');
+    
+    if (cep.length === 8) {
+        // Evitar múltiplas requisições simultâneas
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        showCEPLoading();
+        
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`, {
+                signal: AbortSignal.timeout(5000) // Timeout de 5 segundos
+            });
+            
+            if (!response.ok) {
+                throw new Error('Erro na requisição');
+            }
+            
+            const data = await response.json();
+            
+            // Simular delay mínimo para UX
+            await new Promise(resolve => setTimeout(resolve, 400));
+            
+            if (!data.erro) {
+                fillAddressFields(data);
+                showAddressFields();
+                cepInput.classList.remove('error');
+                const errorEl = document.getElementById('zipCodeError');
+                if (errorEl) errorEl.classList.remove('show');
+            } else {
+                showCEPError();
+            }
+        } catch (error) {
+            console.error('Erro ao buscar CEP:', error);
+            showCEPError();
+        } finally {
+            hideCEPLoading();
+            isProcessing = false;
+        }
+    } else {
+        hideAddressFields();
+        hideCEPLoading();
+        const errorEl = document.getElementById('zipCodeError');
+        if (errorEl) errorEl.classList.remove('show');
+        cepInput.classList.remove('error');
+    }
+}
+
+function showCEPLoading() {
+    if (domCache.cepLoader) domCache.cepLoader.classList.add('show');
+    if (domCache.cepIndicator) domCache.cepIndicator.classList.add('show');
+}
+
+function hideCEPLoading() {
+    if (domCache.cepLoader) domCache.cepLoader.classList.remove('show');
+    if (domCache.cepIndicator) domCache.cepIndicator.classList.remove('show');
+}
+
+function fillAddressFields(data) {
+    const fields = {
+        address: data.logradouro,
+        neighborhood: data.bairro,
+        city: data.localidade,
+        state: data.uf
+    };
+    
+    // Usar requestAnimationFrame para atualizações de DOM mais suaves
+    requestAnimationFrame(() => {
+        Object.entries(fields).forEach(([fieldName, value]) => {
+            const field = document.getElementById(fieldName);
+            if (field) field.value = value;
+        });
+        
+        // Focar no campo número após preenchimento
+        const numberField = document.getElementById('number');
+        if (numberField) {
+            setTimeout(() => numberField.focus(), 100);
+        }
+    });
+    
+    addressFilled = true;
+}
+
+function showAddressFields() {
+    if (domCache.addressFields) {
+        requestAnimationFrame(() => {
+            domCache.addressFields.classList.add('show');
+        });
+    }
+}
+
+function hideAddressFields() {
+    if (domCache.addressFields) {
+        domCache.addressFields.classList.remove('show');
+    }
+    addressFilled = false;
+}
+
+function showCEPError() {
+    const zipCodeInput = document.getElementById('zipCode');
+    const errorEl = document.getElementById('zipCodeError');
+    
+    if (zipCodeInput) zipCodeInput.classList.add('error');
+    if (errorEl) {
+        errorEl.textContent = 'CEP não encontrado. Verifique e tente novamente.';
+        errorEl.classList.add('show');
+    }
+    hideAddressFields();
+}
+
+// ===== MÁSCARAS OTIMIZADAS =====
+function setupMasks() {
+    const maskConfigs = [
+        { id: 'cpf', mask: applyCPFMask },
+        { id: 'rg', mask: applyRGMask },
+        { id: 'phone', mask: applyPhoneMask },
+        { id: 'zipCode', mask: applyZipMask },
+        { id: 'socialCapital', mask: applyMoneyMask }
+    ];
+    
+    maskConfigs.forEach(({ id, mask }) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('input', throttle(function(e) {
+                const cursorPosition = e.target.selectionStart;
+                const oldValue = e.target.value;
+                const newValue = mask(oldValue);
+                
+                if (newValue !== oldValue) {
+                    e.target.value = newValue;
+                    // Manter posição do cursor
+                    const newCursorPosition = cursorPosition + (newValue.length - oldValue.length);
+                    e.target.setSelectionRange(newCursorPosition, newCursorPosition);
+                }
+            }, THROTTLE_DELAY));
+        }
+    });
+}
+
+// Funções de máscara otimizadas (sem mudanças na lógica, apenas performance)
+function applyCPFMask(value) {
+    return value
+        .replace(/\D/g, '')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+}
+
+function applyRGMask(value) {
+    const cleanValue = value.replace(/\D/g, '');
+    
+    if (cleanValue.length > 8) {
+        return cleanValue.replace(/^(\d{2})(\d{3})(\d{3})(\d{1})$/, '$1.$2.$3-$4');
+    } else if (cleanValue.length > 5) {
+        return cleanValue.replace(/^(\d{2})(\d{3})(\d{3})$/, '$1.$2.$3');
+    } else if (cleanValue.length > 2) {
+        return cleanValue.replace(/^(\d{2})(\d+)$/, '$1.$2');
+    }
+    return cleanValue;
+}
+
+function applyPhoneMask(value) {
+    return value
+        .replace(/\D/g, '')
+        .replace(/^(\d\d)(\d)/g, '($1) $2')
+        .replace(/(\d{5})(\d)/, '$1-$2');
+}
+
+function applyZipMask(value) {
+    return value
+        .replace(/\D/g, '')
+        .replace(/^(\d{5})(\d)/, '$1-$2');
+}
+
+function applyMoneyMask(value) {
+    value = value.replace(/\D/g, '');
+    value = value.replace(/(\d)(\d{2})$/, '$1,$2');
+    value = value.replace(/(?=(\d{3})+(\D))\B/g, '.');
+    return 'R$ ' + value;
+}
+
+// ===== TRATAMENTO DO RG COM VISIBILIDADE CONDICIONAL =====
+async function handleRgInput() {
+    const rgInput = document.getElementById('rg');
+    if (!rgInput) return;
+    
+    const rgValue = rgInput.value;
+
+    if (validateRGFormat(rgValue)) {
+        // Fechar teclado virtual
+        rgInput.blur();
+        
+        // Mostrar spinner sutil abaixo do campo
+        if (domCache.rgLoadingIndicator) {
+            domCache.rgLoadingIndicator.classList.add('show');
+        }
+        
+        // Delay para UX
+        await new Promise(resolve => setTimeout(resolve, 1200));
+        
+        // Ocultar spinner e mostrar campos condicionais
+        if (domCache.rgLoadingIndicator) {
+            domCache.rgLoadingIndicator.classList.remove('show');
+        }
+        
+        // MOSTRAR TODOS OS CAMPOS CONDICIONAIS INCLUINDO INFORMAÇÕES DO DOCUMENTO
+        if (domCache.conditionalFields) {
+            domCache.conditionalFields.classList.add('show');
+        }
+    } else {
+        // Ocultar campos condicionais se RG não for válido
+        if (domCache.conditionalFields) {
+            domCache.conditionalFields.classList.remove('show');
+        }
+        if (domCache.rgLoadingIndicator) {
+            domCache.rgLoadingIndicator.classList.remove('show');
+        }
+    }
+    
+    validateField(rgInput);
+}
+
+function validateRGFormat(rg) {
+    return /^\d{2}\.\d{3}\.\d{3}-\d$/.test(rg);
+}
+
+function validateRG(rg) {
+    return validateRGFormat(rg);
+}
+
+// ===== NAVEGAÇÃO ENTRE ETAPAS OTIMIZADA =====
+function goToStep(step) {
+    if (step < currentStep || validateCurrentStep()) {
+        currentStep = step;
+        updateStepDisplay();
+        updateProgress();
+        
+        if (currentStep === 3) {
+            updateReviewDetails();
+        }
+        
+        // Scroll suave para mobile
+        if (window.innerWidth < 768) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+}
+
+function updateStepDisplay() {
+    requestAnimationFrame(() => {
+        document.querySelectorAll('.step-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        const currentStepEl = document.getElementById(`step${currentStep}`);
+        if (currentStepEl) {
+            currentStepEl.classList.add('active');
+        }
+    });
+}
+
+function updateProgress() {
+    const steps = document.querySelectorAll('.step');
+    
+    requestAnimationFrame(() => {
+        steps.forEach((step, index) => {
+            const stepNumber = index + 1;
+            const circle = step.querySelector('.step-circle');
+            
+            step.classList.remove('active', 'completed');
+            
+            if (stepNumber < currentStep) {
+                step.classList.add('completed');
+                if (circle) circle.innerHTML = '✓';
+            } else if (stepNumber === currentStep) {
+                step.classList.add('active');
+                if (circle) circle.innerHTML = stepNumber;
+            } else {
+                if (circle) circle.innerHTML = stepNumber;
+            }
+        });
+
+        // Atualizar linha de progresso
+        const progressWidth = ((currentStep - 1) / (steps.length - 1)) * 100;
+        if (domCache.progressLine) {
+            domCache.progressLine.style.width = `${progressWidth}%`;
+        }
+    });
+}
+
+// ===== VALIDAÇÃO OTIMIZADA =====
+function validateCurrentStep() {
+    const currentStepEl = document.getElementById(`step${currentStep}`);
+    if (!currentStepEl) return false;
+    
+    const inputs = currentStepEl.querySelectorAll('input[required], select[required]');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        if (!validateField(input)) {
+            isValid = false;
+        }
+    });
+
+    // Validações específicas por etapa
+    if (currentStep === 2 && !addressFilled) {
+        isValid = false;
+        const zipCodeInput = document.getElementById('zipCode');
+        if (zipCodeInput && !zipCodeInput.classList.contains('error')) {
+            zipCodeInput.classList.add('error');
+            const errorEl = document.getElementById('zipCodeError');
+            if (errorEl) {
+                errorEl.textContent = 'Digite um CEP válido para continuar';
+                errorEl.classList.add('show');
+            }
+        }
+    }
+
+    if (currentStep === 3) {
+        const checkboxes = currentStepEl.querySelectorAll('input[type="checkbox"][required]');
+        checkboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                isValid = false;
+                checkbox.style.outline = '2px solid var(--error-color)';
+            } else {
+                checkbox.style.outline = 'none';
+            }
+        });
+    }
+
+    return isValid;
+}
+
+function validateField(field) {
+    if (!field) return false;
+    
+    const value = field.value.trim();
+    const fieldName = field.name;
+    let isValid = true;
+    let errorMessage = '';
+
+    // Limpar estados anteriores
+    field.classList.remove('error', 'success');
+    const errorEl = document.getElementById(fieldName + 'Error');
+    if (errorEl) errorEl.classList.remove('show');
+
+    // Validação de campo obrigatório
+    if (field.hasAttribute('required') && !value) {
+        isValid = false;
+        errorMessage = "Este campo é obrigatório";
+    } else if (value) {
+        // Validações específicas por tipo de campo
+        const validators = {
+            email: () => validateEmail(value) || "Digite um e-mail válido",
+            cpf: () => validateCPF(value) || "Digite um CPF válido",
+            rg: () => validateRG(value) || "Digite um RG válido",
+            phone: () => validatePhone(value) || "Digite um telefone válido",
+            zipCode: () => validateZipCode(value) || "Digite um CEP válido",
+            fullName: () => value.length >= 3 || "Digite um nome válido",
+            motherName: () => value.length >= 3 || "Digite um nome válido"
+        };
+        
+        const validator = validators[fieldName];
+        if (validator) {
+            const result = validator();
+            if (result !== true) {
+                isValid = false;
+                errorMessage = result;
+            }
+        }
+    }
+
+    // Aplicar resultado da validação
+    requestAnimationFrame(() => {
+        if (isValid) {
+            field.classList.add("success");
+        } else {
+            field.classList.add("error");
+            if (errorEl) {
+                errorEl.textContent = errorMessage;
+                errorEl.classList.add("show");
+            }
+        }
+    });
+
+    return isValid;
+}
+
+// Funções de validação (mantidas iguais)
+function validateEmail(email) {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+}
+
+function validateCPF(cpf) {
+    cpf = cpf.replace(/\D/g, '');
+    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+        sum += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let remainder = 11 - (sum % 11);
+    if (remainder === 10 || remainder === 11) remainder = 0;
+    if (remainder !== parseInt(cpf.charAt(9))) return false;
+
+    sum = 0;
+    for (let i = 0; i < 10; i++) {
+        sum += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    remainder = 11 - (sum % 11);
+    if (remainder === 10 || remainder === 11) remainder = 0;
+    if (remainder !== parseInt(cpf.charAt(10))) return false;
+
+    return true;
+}
+
+function validatePhone(phone) {
+    return /^\(\d{2}\) \d{5}-\d{4}$/.test(phone);
+}
+
+function validateZipCode(zipCode) {
+    return /^\d{5}-\d{3}$/.test(zipCode);
+}
+
+// ===== HANDLERS DE FORMULÁRIO OTIMIZADOS =====
+async function handlePersonalDataSubmit(e) {
+    e.preventDefault();
+    
+    if (!validateCurrentStep()) return;
+    
+    const formData = new FormData(e.target);
+    const personalData = Object.fromEntries(formData.entries());
+
+    window.meiData = { ...window.meiData, ...personalData };
+    goToStep(2);
+}
+
+async function handleAddressActivitySubmit(e) {
+    e.preventDefault();
+    
+    if (!validateCurrentStep()) return;
+    
+    const formData = new FormData(e.target);
+    const addressActivityData = Object.fromEntries(formData.entries());
+
+    window.meiData = { ...window.meiData, ...addressActivityData };
+    goToStep(3);
+}
+
+async function handleConfirmationSubmit(e) {
+    e.preventDefault();
+    
+    if (!validateCurrentStep()) {
+        alert('Por favor, aceite todos os termos para continuar.');
+        return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.classList.add('btn-loading');
+    
+    if (domCache.loadingOverlay) {
+        domCache.loadingOverlay.style.display = 'flex';
+    }
+    
+    try {
+        // Simular processamento
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        const declarationData = {
+            termsAccept: document.getElementById('termsAccept')?.checked,
+            dataAccuracy: document.getElementById('dataAccuracy')?.checked,
+            lgpdConsent: document.getElementById('lgpdConsent')?.checked,
+            submissionDate: new Date().toISOString()
+        };
+
+        window.meiData = { ...window.meiData, ...declarationData };
+        
+        showSuccessNotification('✅ Dados coletados com sucesso! Redirecionando para pagamento...');
+        
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Redirecionar para pagamento
+        window.location.href = 'https://exemplo-pagamento.com/mei-checkout?valor=59.90&produto=abertura-mei';
+        
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao processar solicitação. Tente novamente.');
+    } finally {
+        if (submitBtn) submitBtn.classList.remove('btn-loading');
+        if (domCache.loadingOverlay) {
+            domCache.loadingOverlay.style.display = 'none';
+        }
+    }
+}
+
+// ===== FUNÇÕES AUXILIARES =====
+function showSuccessNotification(message) {
+    if (domCache.successNotification) {
+        domCache.successNotification.textContent = message;
+        domCache.successNotification.style.display = 'block';
+        
+        setTimeout(() => {
+            domCache.successNotification.style.display = 'none';
+        }, 5000);
+    }
+}
+
+function toggleReviewDetails() {
+    const toggle = document.querySelector('.review-toggle');
+    const content = document.getElementById('reviewContent');
+    
+    if (!toggle || !content) return;
+    
+    toggle.classList.toggle('expanded');
+    content.classList.toggle('expanded');
+    
+    if (content.classList.contains('expanded')) {
+        updateReviewDetails();
+    }
+}
+
+function updateReviewDetails() {
+    const reviewFields = [
+        // Dados Pessoais
+        { id: 'reviewFullName', key: 'fullName' },
+        { id: 'reviewCpf', key: 'cpf' },
+        { id: 'reviewRg', key: 'rg' },
+        { id: 'reviewRgIssuer', key: 'rgIssuer' },
+        { id: 'reviewRgState', key: 'rgState' },
+        { id: 'reviewMotherName', key: 'motherName' },
+        { id: 'reviewEmail', key: 'email' },
+        { id: 'reviewPhone', key: 'phone' },
+        
+        // Endereço
+        { id: 'reviewZipCode', key: 'zipCode' },
+        { id: 'reviewAddress', key: 'address' },
+        { id: 'reviewNumber', key: 'number' },
+        { id: 'reviewComplement', key: 'complement', defaultValue: 'Não informado' },
+        { id: 'reviewNeighborhood', key: 'neighborhood' },
+        { id: 'reviewCity', key: 'city' },
+        { id: 'reviewState', key: 'state' },
+        
+        // Atividade Empresarial
+        { id: 'reviewPrimaryActivity', key: 'primaryActivity' },
+        { id: 'reviewSecondaryActivity', key: 'secondaryActivity', defaultValue: 'Não informado' },
+        { id: 'reviewTradeName', key: 'tradeName', defaultValue: 'Não informado' },
+        { id: 'reviewSocialCapital', key: 'socialCapital' }
+    ];
+
+    requestAnimationFrame(() => {
+        reviewFields.forEach(({ id, key, defaultValue = '-' }) => {
+            const element = document.getElementById(id);
+            if (element) {
+                const value = window.meiData[key] || defaultValue;
+                element.textContent = value;
+                
+                // Aplicar classe 'empty' para campos vazios
+                if (value === '-' || value === 'Não informado') {
+                    element.classList.add('empty');
+                } else {
+                    element.classList.remove('empty');
+                }
+            }
+        });
+    });
+}
+
+// Expor função global necessária
+window.toggleReviewDetails = toggleReviewDetails;
+    </script>
+
+
+
+</body>
